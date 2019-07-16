@@ -46,7 +46,7 @@ function strapiMiddlewareNext (strapi) {
       const app = next(config);
       // Prepare server but do not `await` it so we don't break strapi middleware boot chain
       // resolve promise with Next.js request handler
-      const prepareNext = app.prepare().then(() => app.getRequestHandler());
+      const prepareNext = app.prepare().then(() => app.getRequestHandler()).catch(err => console.error(err));
 
       // Create new `koa-router` instance
       const router = new Router();
